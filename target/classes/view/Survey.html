@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Survey</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+</head>
+<body>
+	<div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+            <h1>Developer</h1>
+            
+            <form class="form-horizontal" th:action="@{/survey/{id}/answer(id=${survey.id})}" method="post" enctype="multipart/form-data" >
+            	<fieldset>
+            		<div class="form-group">
+	                    <label class="col-lg-2 control-label">Topic</label>
+	                    <div class="col-lg-6">
+	                    	<input type="text" class="form-control" disabled="disabled" 
+	                    		th:value="${survey.topic}"/>
+	                    </div>
+                	</div>
+
+            		<div class="form-group">
+	                    <label class="col-lg-2 control-label">Answer</label>
+	                    <div class="col-lg-10">
+							<div th:each="answer : ${answer.survey}">
+								<span th:text="${answer.score}" /> - <span th:text="${answer.feedback}" />
+							</div>
+	                    </div>
+	                </div>
+            		<div class="form-group">
+	                    <label class="col-lg-2 control-label">Answer</label>
+	                    <div class="col-lg-10">
+							<div th:each="skill : ${answer.survey}">
+								<span th:text="${answer.score}" /> - <span th:text="${answer.feedback}" />
+							</div>
+	                    </div>
+	                </div>
+	                <button onclick="onClick([(${answerController.saveAnswer})])">Save</button>
+            	</fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+	</div>
+
+</body>
+</html>
